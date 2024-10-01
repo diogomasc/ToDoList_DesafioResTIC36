@@ -6,13 +6,11 @@ type CardValueProps = {
 };
 
 export const Container = styled.View`
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   flex-direction: row;
   align-items: center;
-  /* justify-content: space-between; */
   gap: 8px;
-  /* width: 100%; */
 `;
 
 export const CardTitle = styled.Text`

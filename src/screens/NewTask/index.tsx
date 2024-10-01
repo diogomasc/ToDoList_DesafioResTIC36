@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { TaskContext } from "../../context/TaskContext";
 import { SaveTaskButton } from "../../components/SaveTaskButton";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import * as Yup from "yup";
 import { Formik } from "formik";
@@ -22,12 +22,10 @@ const TaskSchema = Yup.object().shape({
 });
 
 const NewTask = () => {
-  const { createTask } = useContext(TaskContext);
+  const { createTask, showAlert } = useContext(TaskContext);
   const navigation = useNavigation();
-  const route = useRoute();
-  const showAlert = route.params?.showAlert;
 
-  const handleSaveTask = (taskText, resetForm) => {
+  const handleSaveTask = (taskText: string, resetForm: () => void) => {
     if (taskText.trim()) {
       createTask(taskText);
       showAlert("Uma nova tarefa foi criada!", "success");
@@ -62,7 +60,7 @@ const NewTask = () => {
           <>
             <TextInput
               style={styles.input}
-              placeholder="Digite o título da tarefa"
+              placeholder="Digite a descrição da tarefa"
               value={values.taskText}
               onChangeText={handleChange("taskText")}
               maxLength={256}

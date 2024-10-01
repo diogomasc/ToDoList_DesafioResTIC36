@@ -1,14 +1,8 @@
-import React, {
-  useState,
-  useContext,
-  useMemo,
-  useCallback,
-  useEffect,
-} from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { FlatList, Text, View, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Feather } from "@expo/vector-icons";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { CardNumber } from "../../components/CardNumber";
 import { Task } from "../../components/Task";
 import { SearchTask } from "../../components/SearchTask";
@@ -20,33 +14,19 @@ import { TaskContext } from "../../context/TaskContext";
 import { styles } from "./styles";
 
 export default function Home() {
-  const { tasks, handleTaskChangeStatus, handleTaskDelete, searchTasks } =
-    useContext(TaskContext);
+  const {
+    tasks,
+    handleTaskChangeStatus,
+    handleTaskDelete,
+    searchTasks,
+    alert,
+    showAlert,
+  } = useContext(TaskContext);
   const navigation = useNavigation();
-  const route = useRoute();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
-  const [alert, setAlert] = useState({
-    visible: false,
-    message: "",
-    type: "success",
-  });
-
-  const showAlert = useCallback((message, type) => {
-    setAlert({ visible: true, message, type });
-    setTimeout(
-      () => setAlert({ visible: false, message: "", type: "success" }),
-      3000
-    );
-  }, []);
-
-  useEffect(() => {
-    if (route.params?.showAlert) {
-      showAlert(route.params.alertMessage, route.params.alertType);
-    }
-  }, [route.params, showAlert]);
 
   const { filteredTasks, countTask, countDone } = useMemo(() => {
     const filtered = searchTasks(searchQuery);
@@ -136,9 +116,7 @@ export default function Home() {
       />
 
       <View style={styles.footer}>
-        <CreateTaskButton
-          onPress={() => navigation.navigate("NewTask", { showAlert })}
-        />
+        <CreateTaskButton onPress={() => navigation.navigate("NewTask")} />
       </View>
 
       <AlertPersonalizado

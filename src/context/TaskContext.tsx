@@ -1,10 +1,17 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useCallback } from "react";
 import { TaskProps } from "../utils/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+interface AlertProps {
+  visible: boolean;
+  message: string;
+  type: "success" | "error";
+}
 
 interface TaskContextProps {
   task: TaskProps;
   tasks: TaskProps[];
+  alert: AlertProps;
   selectTask: (task: TaskProps) => void;
   clearTask: () => void;
   createTask: (title: string) => void;
@@ -12,6 +19,7 @@ interface TaskContextProps {
   handleTaskChangeStatus: (taskToChange: TaskProps) => void;
   handleTaskDelete: (taskToDelete: TaskProps) => void;
   searchTasks: (searchQuery: string) => TaskProps[];
+  showAlert: (message: string, type: "success" | "error") => void;
 }
 
 interface TaskProviderProps {
@@ -22,6 +30,7 @@ interface TaskProviderProps {
 export const TaskContext = createContext<TaskContextProps>({
   task: { id: 0, title: "", status: false },
   tasks: [],
+  alert: { visible: false, message: "", type: "success" },
   selectTask: () => {},
   clearTask: () => {},
   createTask: () => {},
@@ -29,6 +38,7 @@ export const TaskContext = createContext<TaskContextProps>({
   handleTaskChangeStatus: () => {},
   handleTaskDelete: () => {},
   searchTasks: () => [],
+  showAlert: () => {},
 });
 
 export function TaskProvider({ children }: TaskProviderProps) {
@@ -41,6 +51,13 @@ export function TaskProvider({ children }: TaskProviderProps) {
 
   // Estado para todas as tarefas
   const [tasks, setTasks] = useState<TaskProps[]>([]);
+
+  // Estado para alertas
+  const [alert, setAlert] = useState<AlertProps>({
+    visible: false,
+    message: "",
+    type: "success",
+  });
 
   // Função para armazenar as tarefas no AsyncStorage
   async function storeTasks(tasks: TaskProps[]) {
@@ -117,11 +134,23 @@ export function TaskProvider({ children }: TaskProviderProps) {
     return filteredTasks;
   }
 
+  const showAlert = useCallback(
+    (message: string, type: "success" | "error") => {
+      setAlert({ visible: true, message, type });
+      setTimeout(
+        () => setAlert({ visible: false, message: "", type: "success" }),
+        3000
+      );
+    },
+    []
+  );
+
   return (
     <TaskContext.Provider
       value={{
         task,
         tasks,
+        alert,
         selectTask,
         clearTask,
         createTask,
@@ -129,6 +158,7 @@ export function TaskProvider({ children }: TaskProviderProps) {
         handleTaskChangeStatus,
         handleTaskDelete,
         searchTasks,
+        showAlert,
       }}
     >
       {children}
