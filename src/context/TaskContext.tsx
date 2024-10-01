@@ -11,7 +11,7 @@ interface TaskContextProps {
   setTasks: React.Dispatch<React.SetStateAction<TaskProps[]>>;
   handleTaskChangeStatus: (taskToChange: TaskProps) => void;
   handleTaskDelete: (taskToDelete: TaskProps) => void;
-  searchTasks: (searchQuery: string) => TaskProps[]; // Adicionado o retorno da função
+  searchTasks: (searchQuery: string) => TaskProps[];
 }
 
 interface TaskProviderProps {
@@ -28,7 +28,7 @@ export const TaskContext = createContext<TaskContextProps>({
   setTasks: () => {},
   handleTaskChangeStatus: () => {},
   handleTaskDelete: () => {},
-  searchTasks: () => [], // Corrigido para retornar um array vazio por padrão
+  searchTasks: () => [],
 });
 
 export function TaskProvider({ children }: TaskProviderProps) {

@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Modal } from "react-native";
+import { Feather } from "@expo/vector-icons";
 import { styles } from "./styles";
 
 type ModalDeleteTaskProps = {
@@ -29,10 +30,12 @@ export const ModalDeleteTask: React.FC<ModalDeleteTaskProps> = ({
           <View style={styles.modalButtons}>
             <TouchableOpacity style={styles.cancelButton} onPress={onCancel}>
               <Text style={styles.cancelButtonText}>Cancelar</Text>
+              <Feather name="x" size={24} color="#262428" />
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.deleteButton} onPress={onConfirm}>
               <Text style={styles.deleteButtonText}>Excluir</Text>
+              <Feather name="trash-2" size={24} color="#FCFCFC" />
             </TouchableOpacity>
           </View>
         </View>

@@ -1,54 +1,63 @@
-import React, { useState, useContext, useMemo, useCallback } from "react";
+import React, {
+  useState,
+  useContext,
+  useMemo,
+  useCallback,
+  useEffect,
+} from "react";
 import { FlatList, Text, View, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { Feather } from "@expo/vector-icons";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { CardNumber } from "../../components/CardNumber";
 import { Task } from "../../components/Task";
-import { TaskContext } from "../../context/TaskContext";
 import { SearchTask } from "../../components/SearchTask";
 import { CreateTaskButton } from "../../components/CreateTaskButton";
 import { AlertPersonalizado } from "../../components/AlertPersonalizado";
-import { Feather } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
-import { styles } from "./styles";
 import { ModalDeleteTask } from "../../components/ModalDeleteTask";
+
+import { TaskContext } from "../../context/TaskContext";
+import { styles } from "./styles";
 
 export default function Home() {
   const { tasks, handleTaskChangeStatus, handleTaskDelete, searchTasks } =
     useContext(TaskContext);
+  const navigation = useNavigation();
+  const route = useRoute();
+
   const [searchQuery, setSearchQuery] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
-  const navigation = useNavigation();
   const [alert, setAlert] = useState({
     visible: false,
     message: "",
     type: "success",
   });
 
+  const showAlert = useCallback((message, type) => {
+    setAlert({ visible: true, message, type });
+    setTimeout(
+      () => setAlert({ visible: false, message: "", type: "success" }),
+      3000
+    );
+  }, []);
+
+  useEffect(() => {
+    if (route.params?.showAlert) {
+      showAlert(route.params.alertMessage, route.params.alertType);
+    }
+  }, [route.params, showAlert]);
+
   const { filteredTasks, countTask, countDone } = useMemo(() => {
     const filtered = searchTasks(searchQuery);
-    const sorted = [...filtered].sort((a, b) => {
-      if (a.status === b.status) return 0;
-      return a.status ? 1 : -1;
-    });
+    const sorted = [...filtered].sort((a, b) => a.status - b.status);
 
     return {
       filteredTasks: sorted,
       countTask: filtered.length,
       countDone: filtered.filter((task) => task.status).length,
     };
-  }, [tasks, searchQuery]);
-
-  const showAlert = useCallback(
-    (message: string, type: "success" | "error") => {
-      setAlert({ visible: true, message, type });
-      setTimeout(
-        () => setAlert({ visible: false, message: "", type: "success" }),
-        3000
-      );
-    },
-    []
-  );
+  }, [tasks, searchQuery, searchTasks]);
 
   const confirmTaskDelete = (task) => {
     setTaskToDelete(task);
@@ -62,6 +71,26 @@ export default function Home() {
       showAlert("Tarefa excluída com sucesso!", "error");
     }
   };
+
+  const renderEmptyList = () => (
+    <View style={styles.listEmptyComponent}>
+      <Feather name="clipboard" size={50} color="#555" />
+      {searchQuery ? (
+        <Text style={styles.listEmptyComponentText}>
+          Nenhuma tarefa encontrada para "{searchQuery}"
+        </Text>
+      ) : (
+        <>
+          <Text style={styles.listEmptyComponentText}>
+            Você ainda não tem tarefas cadastradas
+          </Text>
+          <Text style={styles.listEmptyComponentSubText}>
+            Crie tarefas e organize seus itens a fazer
+          </Text>
+        </>
+      )}
+    </View>
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -103,17 +132,7 @@ export default function Home() {
             onRemove={() => confirmTaskDelete(item)}
           />
         )}
-        ListEmptyComponent={() => (
-          <View style={styles.listEmptyComponent}>
-            <Feather name="clipboard" size={50} color="#555" />
-            <Text style={styles.listEmptyComponentText}>
-              Você ainda não tem tarefas cadastradas
-            </Text>
-            <Text style={styles.listEmptyComponentSubText}>
-              Crie tarefas e organize seus itens a fazer
-            </Text>
-          </View>
-        )}
+        ListEmptyComponent={renderEmptyList}
       />
 
       <View style={styles.footer}>

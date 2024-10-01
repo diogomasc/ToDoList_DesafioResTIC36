@@ -1,3 +1,4 @@
+// AlertPersonalizado
 import React, { useEffect, useRef } from "react";
 import { Animated, Text } from "react-native";
 import { styles } from "./styles";
