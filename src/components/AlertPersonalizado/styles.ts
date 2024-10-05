@@ -11,7 +11,7 @@ export const AlertContainer = styled(Animated.View)`
   border-radius: 8px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 60px;
+  margin-bottom: 70px;
 `;
 
 export const AlertText = styled.Text`
