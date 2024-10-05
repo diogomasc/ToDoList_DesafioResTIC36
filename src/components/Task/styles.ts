@@ -1,23 +1,40 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 
-export const Container = styled.TouchableOpacity`
+interface ContainerProps {
+  status?: boolean;
+}
+
+interface TaskTextProps {
+  status?: boolean;
+}
+
+export const Container = styled.TouchableOpacity<ContainerProps>`
   width: 100%;
-  height: auto;
-  padding: 10px;
+  padding: 15px;
   background-color: #e5e2e9;
   border-radius: 8px;
-  position: relative;
-  margin-bottom: 16px;
-  padding: 15px;
+  margin-bottom: 12px;
+
+  ${(props) =>
+    props.status &&
+    css`
+      background-color: #d1cbd7;
+    `}
 `;
 
-export const TaskText = styled.Text`
+export const TaskText = styled.Text<TaskTextProps>`
   color: #262428;
   font-size: 16px;
   font-weight: 500;
   flex-shrink: 1;
   flex-grow: 1;
   margin: 0 40px;
+
+  ${(props) =>
+    props.status &&
+    css`
+      text-decoration-line: line-through;
+    `}
 `;
 
 export const TaskDone = styled.TouchableOpacity`

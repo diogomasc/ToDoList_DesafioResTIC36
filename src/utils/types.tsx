@@ -1,6 +1,9 @@
 export type RootStackParamList = {
   Home: undefined;
-  Details: { id: number; title: string; status: boolean };
+  NewTask: undefined;
+  Welcome: undefined;
+  SignIn: undefined;
+  Register: undefined;
 };
 
 export type TaskProps = {

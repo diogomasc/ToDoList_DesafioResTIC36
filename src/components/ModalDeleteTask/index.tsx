@@ -1,7 +1,12 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Modal } from "react-native";
-import { Feather } from "@expo/vector-icons";
-import { styles } from "./styles";
+import { Modal, Text, View } from "react-native";
+import { CancelButton, DeleteButton } from "../Button";
+import {
+  ModalContainer,
+  ModalContent,
+  ModalTitle,
+  ModalButtons,
+} from "./styles";
 
 type ModalDeleteTaskProps = {
   visible: boolean;
@@ -21,25 +26,17 @@ export const ModalDeleteTask: React.FC<ModalDeleteTaskProps> = ({
       visible={visible}
       onRequestClose={onCancel}
     >
-      <View style={styles.modalContainer}>
-        <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>
+      <ModalContainer>
+        <ModalContent>
+          <ModalTitle>
             Tem certeza de que deseja excluir essa tarefa?
-          </Text>
-
-          <View style={styles.modalButtons}>
-            <TouchableOpacity style={styles.cancelButton} onPress={onCancel}>
-              <Text style={styles.cancelButtonText}>Cancelar</Text>
-              <Feather name="x" size={24} color="#262428" />
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.deleteButton} onPress={onConfirm}>
-              <Text style={styles.deleteButtonText}>Excluir</Text>
-              <Feather name="trash-2" size={24} color="#FCFCFC" />
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
+          </ModalTitle>
+          <ModalButtons>
+            <CancelButton onPress={onCancel} />
+            <DeleteButton onPress={onConfirm} />
+          </ModalButtons>
+        </ModalContent>
+      </ModalContainer>
     </Modal>
   );
 };

@@ -1,55 +1,48 @@
-import { StyleSheet } from "react-native";
+import styled from "styled-components/native";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-    paddingTop: 50,
-    backgroundColor: "#fefefe",
-  },
-  header: {
-    marginBottom: 24,
-  },
-  backButton: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  backButtonText: {
-    color: "#6F3CC3",
-    fontSize: 16,
-    marginLeft: 8,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 16,
-    color: "#333",
-  },
-  input: {
-    flex: 1,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    borderRadius: 8,
-    padding: 16,
-    fontSize: 16,
-    textAlignVertical: "top",
-    marginBottom: 8,
-  },
-  errorText: {
-    color: "red",
-    fontSize: 14,
-    marginBottom: 8,
-  },
-  footer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginTop: 16,
-  },
-  charCount: {
-    color: "#6B6572",
-    fontSize: 14,
-  },
-});
+export const Container = styled.SafeAreaView`
+  flex: 1;
+  background-color: #fefefe;
+  padding: 20px;
+  padding-top: 60px;
+`;
 
-export default styles;
+export const Header = styled.View`
+  margin-bottom: 24px;
+`;
+
+export const Title = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #333;
+`;
+
+export const StyledTextInput = styled.TextInput`
+  flex: 1;
+  border-color: #ccc;
+  border-width: 1px;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 16px;
+  text-align-vertical: top;
+  margin-bottom: 8px;
+`;
+
+export const ErrorText = styled.Text`
+  color: red;
+  font-size: 14px;
+  margin-bottom: 8px;
+`;
+
+export const Footer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+`;
+
+export const CharCount = styled.Text`
+  color: #6b6572;
+  font-size: 14px;
+`;

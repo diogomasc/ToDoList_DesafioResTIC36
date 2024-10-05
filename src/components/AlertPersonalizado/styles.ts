@@ -1,21 +1,21 @@
-import { StyleSheet } from "react-native";
+import styled from "styled-components/native";
+import { Animated } from "react-native";
 
-export const styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    bottom: 20,
-    left: 20,
-    right: 20,
-    paddingHorizontal: 16,
-    paddingVertical: 6,
-    borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 70,
-  },
-  text: {
-    color: "#333",
-    fontSize: 16,
-    textAlign: "center",
-  },
-});
+export const AlertContainer = styled(Animated.View)`
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  padding-horizontal: 16px;
+  padding-vertical: 6px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+`;
+
+export const AlertText = styled.Text`
+  color: #333;
+  font-size: 16px;
+  text-align: center;
+`;

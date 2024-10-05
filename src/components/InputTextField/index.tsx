@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { TextInput, View, Text, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { styles } from "./styles";
+import {
+  Container,
+  Label,
+  InputContainer,
+  StyledInput,
+  IconContainer,
+} from "./styles";
 
 type InputTextFieldProps = {
   label: string;
@@ -27,11 +32,10 @@ const InputTextField: React.FC<InputTextFieldProps> = ({
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>{label}</Text>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
+    <Container>
+      <Label>{label}</Label>
+      <InputContainer>
+        <StyledInput
           placeholder={placeholder}
           placeholderTextColor="#A0A0A0"
           value={value}
@@ -40,17 +44,16 @@ const InputTextField: React.FC<InputTextFieldProps> = ({
           onBlur={onBlur}
         />
         {secureTextEntry && (
-          <TouchableOpacity onPress={togglePasswordVisibility}>
+          <IconContainer onPress={togglePasswordVisibility}>
             <Feather
               name={isPasswordVisible ? "eye-off" : "eye"}
               size={20}
               color="#6F3CC3"
-              style={styles.icon}
             />
-          </TouchableOpacity>
+          </IconContainer>
         )}
-      </View>
-    </View>
+      </InputContainer>
+    </Container>
   );
 };
 

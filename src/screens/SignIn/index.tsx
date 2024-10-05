@@ -1,12 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import InputTextField from "../../components/InputTextField";
+import { BackButton } from "../../components/BackButton";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import { AlertPersonalizado } from "../../components/AlertPersonalizado";
-import styles from "./styles"; // Importando os estilos
+import {
+  Container,
+  HeaderBackButton,
+  HeaderLogo,
+  LogoTextContainer,
+  Title,
+  Subtitle,
+  ContentForm,
+  LoginButton,
+  ButtonText,
+  ForgotPasswordButton,
+  ForgotPasswordText,
+  CreateAccountButton,
+  CreateAccountText,
+  ErrorText,
+} from "./styles";
 
 const SignInSchema = Yup.object().shape({
   apelido: Yup.string().required("Apelido é obrigatório"),
@@ -52,32 +67,21 @@ const SignIn: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerBackButton}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={styles.backButton}
-        >
-          <Feather name="arrow-left" size={24} color="#6B6572" />
-          <Text style={styles.backButtonText}>Voltar</Text>
-        </TouchableOpacity>
-      </View>
+    <Container>
+      <HeaderBackButton>
+        <BackButton onPress={() => navigation.goBack()} />
+      </HeaderBackButton>
 
-      <View style={styles.headerLogo}>
-        <Feather
-          name="clipboard"
-          size={40}
-          color="#6F3CC3"
-          style={styles.icon}
-        />
-        <View style={styles.logoTextContainer}>
-          <Text style={styles.title}>To Do List</Text>
-        </View>
-      </View>
+      <HeaderLogo>
+        <Feather name="clipboard" size={40} color="#6F3CC3" />
+        <LogoTextContainer>
+          <Title>To Do List</Title>
+        </LogoTextContainer>
+      </HeaderLogo>
 
-      <Text style={styles.subtitle}>Login</Text>
+      <Subtitle>Login</Subtitle>
 
-      <View style={styles.contentForm}>
+      <ContentForm>
         <Formik
           initialValues={{ apelido: "", senha: "" }}
           validationSchema={SignInSchema}
@@ -100,7 +104,7 @@ const SignIn: React.FC = () => {
                 onBlur={handleBlur("apelido")}
               />
               {touched.apelido && errors.apelido && (
-                <Text style={styles.errorText}>{errors.apelido}</Text>
+                <ErrorText>{errors.apelido}</ErrorText>
               )}
 
               <InputTextField
@@ -112,29 +116,26 @@ const SignIn: React.FC = () => {
                 secureTextEntry
               />
               {touched.senha && errors.senha && (
-                <Text style={styles.errorText}>{errors.senha}</Text>
+                <ErrorText>{errors.senha}</ErrorText>
               )}
 
-              <TouchableOpacity
-                style={styles.loginButton}
-                onPress={handleSubmit}
-              >
-                <Text style={styles.buttonText}>Login</Text>
-              </TouchableOpacity>
+              <LoginButton onPress={handleSubmit}>
+                <ButtonText>Login</ButtonText>
+              </LoginButton>
             </>
           )}
         </Formik>
-      </View>
+      </ContentForm>
 
-      <TouchableOpacity onPress={handleCreateAccount}>
-        <Text style={styles.createAccount}>
+      <CreateAccountButton onPress={handleCreateAccount}>
+        <CreateAccountText>
           Não tem conta? Crie sua conta agora
-        </Text>
-      </TouchableOpacity>
+        </CreateAccountText>
+      </CreateAccountButton>
 
-      <TouchableOpacity onPress={() => {}}>
-        <Text style={styles.forgotPassword}>Esqueceu sua senha?</Text>
-      </TouchableOpacity>
+      <ForgotPasswordButton onPress={() => {}}>
+        <ForgotPasswordText>Esqueceu sua senha?</ForgotPasswordText>
+      </ForgotPasswordButton>
 
       <AlertPersonalizado
         message={alert.message}
@@ -142,7 +143,7 @@ const SignIn: React.FC = () => {
         visible={alert.visible}
         backgroundColor={alert.type === "success" ? "#BFE3D0" : "#E0DCE4"}
       />
-    </View>
+    </Container>
   );
 };
 

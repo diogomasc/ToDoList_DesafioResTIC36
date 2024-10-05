@@ -1,80 +1,79 @@
-import { StyleSheet } from "react-native";
+import styled from "styled-components/native";
+import { Feather } from "@expo/vector-icons";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#FFFFFF",
-    padding: 20,
-  },
-  headerBackButton: {
-    marginTop: 40,
-    marginBottom: 20,
-  },
-  backButton: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  backButtonText: {
-    marginLeft: 10,
-    fontWeight: "bold",
-    color: "#6B6572",
-  },
-  headerLogo: {
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "center",
-    marginBottom: 20,
-    marginTop: 40,
-  },
-  logoTextContainer: {
-    alignItems: "center",
-    marginLeft: 10,
-  },
-  icon: {
-    alignSelf: "center",
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "#6F3CC3",
-    textAlign: "center",
-  },
-  subtitle: {
-    fontSize: 32,
-    color: "#6F3CC3",
-    fontWeight: "semibold",
-    textAlign: "center",
-    marginBottom: 20,
-  },
-  formContainer: {
-    width: "100%",
-  },
-  registerButton: {
-    backgroundColor: "#6F3CC3",
-    width: "100%",
-    padding: 15,
-    borderRadius: 8,
-    alignItems: "center",
-    marginTop: 20,
-  },
-  buttonText: {
-    color: "#FFFFFF",
-    fontSize: 14,
-    fontWeight: "bold",
-  },
-  loginLink: {
-    color: "#6F3CC3",
-    fontSize: 14,
-    textAlign: "center",
-    marginTop: 15,
-  },
-  errorText: {
-    fontSize: 11,
-    color: "red",
-    marginTop: 4,
-    marginBottom: 4,
-    alignSelf: "flex-start",
-  },
-});
+export const Container = styled.View`
+  flex: 1;
+  background-color: #ffffff;
+  padding: 20px;
+`;
 
-export default styles;
+export const HeaderBackButton = styled.View`
+  margin-top: 40px;
+  margin-bottom: 20px;
+`;
+
+export const HeaderLogo = styled.View`
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 40px;
+`;
+
+export const Icon = styled(Feather)`
+  align-self: center;
+`;
+
+export const LogoTextContainer = styled.View`
+  align-items: center;
+  margin-left: 10px;
+`;
+
+export const Title = styled.Text`
+  font-size: 22px;
+  font-weight: bold;
+  color: #6f3cc3;
+  text-align: center;
+`;
+
+export const Subtitle = styled.Text`
+  font-size: 32px;
+  color: #6f3cc3;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+`;
+
+export const FormContainer = styled.View`
+  width: 100%;
+`;
+
+export const RegisterButton = styled.TouchableOpacity`
+  background-color: #6f3cc3;
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  align-items: center;
+  margin-top: 20px;
+`;
+
+export const ButtonText = styled.Text`
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+`;
+
+export const LoginLink = styled.Text`
+  color: #6f3cc3;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 15px;
+`;
+
+export const ErrorText = styled.Text`
+  font-size: 11px;
+  color: red;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  align-self: flex-start;
+`;

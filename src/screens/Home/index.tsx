@@ -1,17 +1,27 @@
 import React, { useContext, useMemo, useState } from "react";
-import { FlatList, Text, View, SafeAreaView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { CardNumber } from "../../components/CardNumber";
 import { Task } from "../../components/Task";
 import { SearchTask } from "../../components/SearchTask";
-import { CreateTaskButton } from "../../components/CreateTaskButton";
+import { CreateTaskButton } from "../../components/Button";
 import { AlertPersonalizado } from "../../components/AlertPersonalizado";
 import { ModalDeleteTask } from "../../components/ModalDeleteTask";
 
 import { TaskContext } from "../../context/TaskContext";
-import { styles } from "./styles";
+import {
+  Container,
+  Header,
+  HeaderText,
+  Greeting,
+  CardContainer,
+  TaskList,
+  EmptyListContainer,
+  EmptyListText,
+  EmptyListSubText,
+  Footer,
+} from "./styles";
 
 export default function Home() {
   const {
@@ -53,39 +63,37 @@ export default function Home() {
   };
 
   const renderEmptyList = () => (
-    <View style={styles.listEmptyComponent}>
+    <EmptyListContainer>
       <Feather name="clipboard" size={50} color="#555" />
       {searchQuery ? (
-        <Text style={styles.listEmptyComponentText}>
+        <EmptyListText>
           Nenhuma tarefa encontrada para "{searchQuery}"
-        </Text>
+        </EmptyListText>
       ) : (
         <>
-          <Text style={styles.listEmptyComponentText}>
-            Você ainda não tem tarefas cadastradas
-          </Text>
-          <Text style={styles.listEmptyComponentSubText}>
+          <EmptyListText>Você ainda não tem tarefas cadastradas</EmptyListText>
+          <EmptyListSubText>
             Crie tarefas e organize seus itens a fazer
-          </Text>
+          </EmptyListSubText>
         </>
       )}
-    </View>
+    </EmptyListContainer>
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <Container>
       <StatusBar style="auto" />
 
-      <View style={styles.header}>
+      <Header>
         <Feather name="clipboard" size={24} color="#6F3CC3" />
-        <Text style={styles.headerText}>To Do List</Text>
-      </View>
+        <HeaderText>To Do List</HeaderText>
+      </Header>
 
-      <Text style={styles.greeting}>Olá!</Text>
+      <Greeting>Olá!</Greeting>
 
       <SearchTask onChangeText={setSearchQuery} value={searchQuery} />
 
-      <View style={styles.cardContainer}>
+      <CardContainer>
         <CardNumber
           title="Tarefas criadas"
           num={countTask}
@@ -98,10 +106,9 @@ export default function Home() {
           color="#2D6C4A"
           background="#BFE3D0"
         />
-      </View>
+      </CardContainer>
 
-      <FlatList
-        style={styles.tasks}
+      <TaskList
         data={filteredTasks}
         renderItem={({ item }) => (
           <Task
@@ -115,9 +122,9 @@ export default function Home() {
         ListEmptyComponent={renderEmptyList}
       />
 
-      <View style={styles.footer}>
+      <Footer>
         <CreateTaskButton onPress={() => navigation.navigate("NewTask")} />
-      </View>
+      </Footer>
 
       <AlertPersonalizado
         message={alert.message}
@@ -131,6 +138,6 @@ export default function Home() {
         onCancel={() => setModalVisible(false)}
         onConfirm={handleConfirmDelete}
       />
-    </SafeAreaView>
+    </Container>
   );
 }

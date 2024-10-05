@@ -1,18 +1,19 @@
 import React, { useContext } from "react";
-import {
-  View,
-  TextInput,
-  TouchableOpacity,
-  Text,
-  SafeAreaView,
-} from "react-native";
 import { TaskContext } from "../../context/TaskContext";
-import { SaveTaskButton } from "../../components/SaveTaskButton";
+import { SaveTaskButton } from "../../components/Button";
 import { useNavigation } from "@react-navigation/native";
-import { Feather } from "@expo/vector-icons";
+import { BackButton } from "../../components/BackButton";
 import * as Yup from "yup";
 import { Formik } from "formik";
-import styles from "./styles";
+import {
+  Container,
+  Header,
+  Title,
+  StyledTextInput,
+  ErrorText,
+  Footer,
+  CharCount,
+} from "./styles";
 
 const TaskSchema = Yup.object().shape({
   taskText: Yup.string()
@@ -21,7 +22,7 @@ const TaskSchema = Yup.object().shape({
     .required("Tarefa não pode ser vazia"),
 });
 
-const NewTask = () => {
+const NewTask: React.FC = () => {
   const { createTask, showAlert } = useContext(TaskContext);
   const navigation = useNavigation();
 
@@ -39,15 +40,12 @@ const NewTask = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton} onPress={handleBackToHome}>
-          <Feather name="arrow-left" size={24} color="#6F3CC3" />
-          <Text style={styles.backButtonText}>Voltar</Text>
-        </TouchableOpacity>
-      </View>
+    <Container>
+      <Header>
+        <BackButton onPress={handleBackToHome} />
+      </Header>
 
-      <Text style={styles.title}>Criar nova tarefa</Text>
+      <Title>Criar nova tarefa</Title>
 
       <Formik
         initialValues={{ taskText: "" }}
@@ -58,8 +56,7 @@ const NewTask = () => {
       >
         {({ handleChange, handleSubmit, values, errors, touched }) => (
           <>
-            <TextInput
-              style={styles.input}
+            <StyledTextInput
               placeholder="Digite a descrição da tarefa"
               value={values.taskText}
               onChangeText={handleChange("taskText")}
@@ -68,17 +65,17 @@ const NewTask = () => {
             />
 
             {touched.taskText && errors.taskText && (
-              <Text style={styles.errorText}>{errors.taskText}</Text>
+              <ErrorText>{errors.taskText}</ErrorText>
             )}
 
-            <View style={styles.footer}>
-              <Text style={styles.charCount}>{values.taskText.length}/256</Text>
+            <Footer>
+              <CharCount>{values.taskText.length}/256</CharCount>
               <SaveTaskButton onPress={handleSubmit} />
-            </View>
+            </Footer>
           </>
         )}
       </Formik>
-    </SafeAreaView>
+    </Container>
   );
 };
 

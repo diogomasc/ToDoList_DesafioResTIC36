@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { AlertPersonalizado } from "../../components/AlertPersonalizado";
-import styles from "./styles";
+import {
+  Container,
+  ContainerHeader,
+  Title,
+  Subtitle,
+  ContainerActions,
+  LoginButton,
+  ButtonText,
+  RegisterButton,
+  RegisterButtonText,
+} from "./styles";
 
 const Welcome: React.FC = () => {
   const navigation = useNavigation();
@@ -29,28 +38,20 @@ const Welcome: React.FC = () => {
   }, [route.params]);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.containerHeader}>
+    <Container>
+      <ContainerHeader>
         <Feather name="clipboard" size={80} color="#9359F3" />
-        <Text style={styles.title}>To Do List</Text>
-        <Text style={styles.subtitle}>
-          Comece a escrever suas ideias e tarefas!
-        </Text>
-      </View>
-      <View style={styles.containerActions}>
-        <TouchableOpacity
-          style={styles.loginButton}
-          onPress={() => navigation.navigate("SignIn")}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.registerButton}
-          onPress={() => navigation.navigate("Register")}
-        >
-          <Text style={styles.registerButtonText}>Cadastre-se</Text>
-        </TouchableOpacity>
-      </View>
+        <Title>To Do List</Title>
+        <Subtitle>Comece a escrever suas ideias e tarefas!</Subtitle>
+      </ContainerHeader>
+      <ContainerActions>
+        <LoginButton onPress={() => navigation.navigate("SignIn")}>
+          <ButtonText>Login</ButtonText>
+        </LoginButton>
+        <RegisterButton onPress={() => navigation.navigate("Register")}>
+          <RegisterButtonText>Cadastre-se</RegisterButtonText>
+        </RegisterButton>
+      </ContainerActions>
 
       <AlertPersonalizado
         message={alert.message}
@@ -58,7 +59,7 @@ const Welcome: React.FC = () => {
         visible={alert.visible}
         backgroundColor={alert.type === "success" ? "#BFE3D0" : "#E0DCE4"}
       />
-    </View>
+    </Container>
   );
 };
 

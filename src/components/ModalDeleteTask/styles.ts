@@ -1,59 +1,32 @@
-import { StyleSheet } from "react-native";
+import styled from "styled-components/native";
 
-export const styles = StyleSheet.create({
-  modalContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  modalContent: {
-    width: "100%",
-    backgroundColor: "#fff",
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
-    padding: 24,
-    alignItems: "center",
-  },
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#333",
-    marginBottom: 16,
-  },
-  modalButtons: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    marginTop: 18,
-  },
-  cancelButton: {
-    flex: 1,
-    flexDirection: "row",
-    backgroundColor: "#E0E0E0",
-    borderRadius: 8,
-    padding: 12,
-    marginRight: 8,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  cancelButtonText: {
-    color: "#333",
-    fontSize: 16,
-    marginRight: 8,
-  },
-  deleteButton: {
-    flex: 1,
-    flexDirection: "row",
-    backgroundColor: "#EB5757",
-    borderRadius: 8,
-    padding: 12,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  deleteButtonText: {
-    color: "#fff",
-    fontSize: 16,
-    marginRight: 8,
-  },
-});
+export const ModalContainer = styled.View`
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+
+export const ModalContent = styled.View`
+  width: 100%;
+  background-color: #fff;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  padding: 24px;
+  align-items: center;
+`;
+
+export const ModalTitle = styled.Text`
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16px;
+`;
+
+export const ModalButtons = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  margin-top: 18px;
+  gap: 16px;
+`;

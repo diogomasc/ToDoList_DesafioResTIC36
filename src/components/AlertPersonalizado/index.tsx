@@ -1,7 +1,6 @@
-// AlertPersonalizado
 import React, { useEffect, useRef } from "react";
-import { Animated, Text } from "react-native";
-import { styles } from "./styles";
+import { Animated } from "react-native";
+import { AlertContainer, AlertText } from "./styles";
 
 type AlertPersonalizadoProps = {
   message: string;
@@ -39,17 +38,14 @@ export const AlertPersonalizado: React.FC<AlertPersonalizadoProps> = ({
   if (!visible) return null;
 
   return (
-    <Animated.View
-      style={[
-        styles.container,
-        {
-          opacity,
-          backgroundColor:
-            backgroundColor || (type === "success" ? "#D1FAE5" : "#FEE2E2"),
-        },
-      ]}
+    <AlertContainer
+      style={{
+        opacity,
+        backgroundColor:
+          backgroundColor || (type === "success" ? "#D1FAE5" : "#FEE2E2"),
+      }}
     >
-      <Text style={styles.text}>{message}</Text>
-    </Animated.View>
+      <AlertText>{message}</AlertText>
+    </AlertContainer>
   );
 };

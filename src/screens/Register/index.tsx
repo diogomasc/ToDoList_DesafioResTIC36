@@ -1,11 +1,24 @@
 import React from "react";
-import { View, TouchableOpacity, Text } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import InputTextField from "../../components/InputTextField";
+import { BackButton } from "../../components/BackButton";
 import * as Yup from "yup";
 import { Formik } from "formik";
-import styles from "./styles"; // Importando os estilos
+import {
+  Container,
+  HeaderBackButton,
+  HeaderLogo,
+  Icon,
+  LogoTextContainer,
+  Title,
+  Subtitle,
+  FormContainer,
+  RegisterButton,
+  ButtonText,
+  LoginLink,
+  ErrorText,
+} from "./styles";
 
 const RegisterSchema = Yup.object().shape({
   apelido: Yup.string().required("Apelido é obrigatório"),
@@ -28,30 +41,19 @@ const Register: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerBackButton}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={styles.backButton}
-        >
-          <Feather name="arrow-left" size={24} color="#6B6572" />
-          <Text style={styles.backButtonText}>Voltar</Text>
-        </TouchableOpacity>
-      </View>
+    <Container>
+      <HeaderBackButton>
+        <BackButton onPress={() => navigation.goBack()} />
+      </HeaderBackButton>
 
-      <View style={styles.headerLogo}>
-        <Feather
-          name="clipboard"
-          size={40}
-          color="#6F3CC3"
-          style={styles.icon}
-        />
-        <View style={styles.logoTextContainer}>
-          <Text style={styles.title}>To Do List</Text>
-        </View>
-      </View>
+      <HeaderLogo>
+        <Icon name="clipboard" size={40} color="#6F3CC3" />
+        <LogoTextContainer>
+          <Title>To Do List</Title>
+        </LogoTextContainer>
+      </HeaderLogo>
 
-      <Text style={styles.subtitle}>Inscreva-se</Text>
+      <Subtitle>Inscreva-se</Subtitle>
 
       <Formik
         initialValues={{ apelido: "", email: "", senha: "" }}
@@ -66,7 +68,7 @@ const Register: React.FC = () => {
           errors,
           touched,
         }) => (
-          <View style={styles.formContainer}>
+          <FormContainer>
             <InputTextField
               label="Defina seu apelido:"
               placeholder="Digite seu apelido"
@@ -75,7 +77,7 @@ const Register: React.FC = () => {
               onBlur={handleBlur("apelido")}
             />
             {touched.apelido && errors.apelido && (
-              <Text style={styles.errorText}>{errors.apelido}</Text>
+              <ErrorText>{errors.apelido}</ErrorText>
             )}
 
             <InputTextField
@@ -86,7 +88,7 @@ const Register: React.FC = () => {
               onBlur={handleBlur("email")}
             />
             {touched.email && errors.email && (
-              <Text style={styles.errorText}>{errors.email}</Text>
+              <ErrorText>{errors.email}</ErrorText>
             )}
 
             <InputTextField
@@ -98,23 +100,20 @@ const Register: React.FC = () => {
               secureTextEntry
             />
             {touched.senha && errors.senha && (
-              <Text style={styles.errorText}>{errors.senha}</Text>
+              <ErrorText>{errors.senha}</ErrorText>
             )}
 
-            <TouchableOpacity
-              style={styles.registerButton}
-              onPress={() => handleSubmit()}
-            >
-              <Text style={styles.buttonText}>Cadastre-se</Text>
-            </TouchableOpacity>
-          </View>
+            <RegisterButton onPress={() => handleSubmit()}>
+              <ButtonText>Cadastre-se</ButtonText>
+            </RegisterButton>
+          </FormContainer>
         )}
       </Formik>
 
       <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
-        <Text style={styles.loginLink}>Já possui login? Entrar</Text>
+        <LoginLink>Já possui login? Entrar</LoginLink>
       </TouchableOpacity>
-    </View>
+    </Container>
   );
 };
 

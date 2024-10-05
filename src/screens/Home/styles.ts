@@ -1,57 +1,64 @@
-import { StyleSheet } from "react-native";
+import styled from "styled-components/native";
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fefefe",
-    padding: 16,
-    paddingTop: 50,
-  },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 16,
-  },
-  headerText: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#6F3CC3",
-    marginLeft: 8,
-  },
-  greeting: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 16,
-  },
-  cardContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%",
-    marginVertical: 16,
-  },
-  tasks: {
-    flex: 1,
-  },
-  listEmptyComponent: {
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 4,
-    marginTop: 32,
-  },
-  listEmptyComponentText: {
-    color: "#555",
-    fontSize: 16,
-    fontWeight: "bold",
-    marginTop: 16,
-  },
-  listEmptyComponentSubText: {
-    color: "#888",
-    fontSize: 14,
-    textAlign: "center",
-  },
-  footer: {
-    marginTop: 16,
-  },
-});
+export const Container = styled.SafeAreaView`
+  flex: 1;
+  background-color: #fefefe;
+  padding: 60px 18px 12px 18px;
+`;
+
+export const Header = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+`;
+
+export const HeaderText = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+  color: #6f3cc3;
+  margin-left: 8px;
+`;
+
+export const Greeting = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+`;
+
+export const CardContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-vertical: 16px;
+`;
+
+export const TaskList = styled.FlatList`
+  flex: 1;
+`;
+
+export const EmptyListContainer = styled.View`
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 32px;
+`;
+
+export const EmptyListText = styled.Text`
+  color: #555;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 16px;
+`;
+
+export const EmptyListSubText = styled.Text`
+  color: #888;
+  font-size: 14px;
+  text-align: center;
+`;
+
+export const Footer = styled.View`
+  margin-top: 12px;
+  align-items: flex-end;
+`;
