@@ -60,18 +60,16 @@ O objetivo é criar uma aplicação de lista de tarefas utilizando React Native,
 ## Telas
 
 <div style="display: flex; overflow-x: auto;">
-   <img src="https://github.com/user-attachments/assets/e61bf0e0-8d71-4284-b6ef-9eae15f63eff" alt="Tela 01" style="height: 500px; margin-right: 10px;">
-   <img src="https://github.com/user-attachments/assets/02b0153b-602f-4168-a0c1-b9bbb22b557b" alt="Tela 02" style="height: 500px; margin-right: 10px;">
-   <img src="https://github.com/user-attachments/assets/3f07f9f2-d40a-4402-b84b-efbb64b754f3" alt="Tela 03" style="height: 500px; margin-right: 10px;">
-   <img src="https://github.com/user-attachments/assets/5a339fe0-19ab-47dd-b004-8b0b66948f54" alt="Tela 04" style="height: 500px; margin-right: 10px;">
-   <img src="https://github.com/user-attachments/assets/d84a8288-57c4-45f2-8e1c-f0a859cbd952" alt="Tela 05" style="height: 500px; margin-right: 10px;">
-   <img src="https://github.com/user-attachments/assets/eee6295d-f542-4d2a-bde4-39544e95bacc" alt="Tela 06" style="height: 500px; margin-right: 10px;">
-   <img src="https://github.com/user-attachments/assets/d28ff357-efae-4e2d-b159-ea9168727be2" alt="Tela 07" style="height: 500px; margin-right: 10px;">
-   <img src="https://github.com/user-attachments/assets/d862e13c-d8c6-4830-97b9-5ab7caa879b8" alt="Tela 08" style="height: 500px; margin-right: 10px;">
-   <img src="https://github.com/user-attachments/assets/feab6b98-0b97-4d83-a7a7-ce04b03a11a6" alt="Tela 09" style="height: 500px; margin-right: 10px;">
-   <img src="https://github.com/user-attachments/assets/b7fc3043-8631-4b16-b751-3649e8d15e29" alt="Tela 10" style="height: 500px; margin-right: 10px;">
-   <img src="https://github.com/user-attachments/assets/3e18d462-3c50-4bd6-80e8-78885120455b" alt="Tela 11" style="height: 500px; margin-right: 10px;">
-   <img src="https://github.com/user-attachments/assets/f58abd8d-b102-429a-90fb-477468a2cc0c" alt="Tela 12" style="height: 500px; margin-right: 10px;">
-   <img src="https://github.com/user-attachments/assets/b6e7e180-0b6c-4ca8-83c8-727fa7679355" alt="Tela 13" style="height: 500px; margin-right: 10px;">
-   <img src="https://github.com/user-attachments/assets/4e809953-6876-4599-8a42-cf724e2fe6d6" alt="Tela 14" style="height: 500px; margin-right: 10px;">
+   <img src="https://github.com/user-attachments/assets/bdfb36ba-0151-4349-bf87-a3d84b96be7a" alt="Tela 01" style="height: 500px; margin-right: 10px;">
+   <img src="https://github.com/user-attachments/assets/984fb03e-632c-4660-9262-4c8a3ad28b1b" alt="Tela 02" style="height: 500px; margin-right: 10px;">
+   <img src="https://github.com/user-attachments/assets/f8248dc9-d421-44df-93a4-db03c8770c8a" alt="Tela 03" style="height: 500px; margin-right: 10px;">
+   <img src="https://github.com/user-attachments/assets/98fe73f7-8153-4aad-8801-afc3b2f834db" alt="Tela 04" style="height: 500px; margin-right: 10px;">
+   <img src="https://github.com/user-attachments/assets/88c22ef7-c081-4e87-904c-56e5e63982c0" alt="Tela 05" style="height: 500px; margin-right: 10px;">
+   <img src="https://github.com/user-attachments/assets/53b4c085-bd4f-4a42-bc0b-b73cb40847e4" alt="Tela 06" style="height: 500px; margin-right: 10px;">
+   <img src="https://github.com/user-attachments/assets/c5eeb61b-5bd8-45b1-b8b6-539ae36a6283" alt="Tela 07" style="height: 500px; margin-right: 10px;">
+   <img src="https://github.com/user-attachments/assets/85bde40a-e3cd-4f8b-81ea-5552b9ab9965" alt="Tela 08" style="height: 500px; margin-right: 10px;">
+   <img src="https://github.com/user-attachments/assets/f4481059-3ad6-4162-bfb9-d50fdf6351b4" alt="Tela 09" style="height: 500px; margin-right: 10px;">
+   <img src="https://github.com/user-attachments/assets/8b6c78ae-1d98-4f7e-8aff-17026ffe1ba1" alt="Tela 10" style="height: 500px; margin-right: 10px;">
+   <img src="https://github.com/user-attachments/assets/8135a199-ae6d-4ac9-a655-9c9e96d21ad7" alt="Tela 11" style="height: 500px; margin-right: 10px;">
+   <img src="https://github.com/user-attachments/assets/596c5c4a-3e39-42d2-a3cf-e1600dfed653" alt="Tela 12" style="height: 500px; margin-right: 10px;">
 </div>
