@@ -57,6 +57,16 @@ O objetivo é criar uma aplicação de lista de tarefas utilizando React Native,
    npm start
    ```
 
+## Observações
+
+Os formulário de entrada (login) e registro (register) utilizam o Formik para gerenciar o estado e a validação dos dados inseridos. É importante observar que, apesar de haver validação no formulário, não existe um banco de dados real ou validação de dados corretos ou incorretos. O uso do Formik foi implementado apenas para fins de demonstração. Portanto, não é necessário ter um usuário ou senha para acessar o aplicativo. Qualquer informação preenchida que satisfaça os requisitos dos campos será considerada válida. Os critérios de validação são:
+
+- O campo do nome (apelido) não pode estar vazio.
+- O campo da senha deve ter mais de 6 caracteres e não pode estar vazio.
+- O campo de email deve ter o formato qualquercoisa@qualquercoisa.
+  
+Aproveite a experiência!
+
 ## Telas
 
 <div style="display: flex; overflow-x: auto;">
